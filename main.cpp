@@ -22,6 +22,7 @@ struct Add
     {
         return a + b;
     }
+    int data = 65;
 };
 
 int main()
@@ -62,5 +63,10 @@ int main()
         Add obj;
         Function<int(Add&, int, int)> f = &Add::mutableF;
         assert((f(obj, 3, 6) == 9));
+    }
+    {
+        Add obj;
+        Function<int(Add&)> f = &Add::data;
+        assert((f(obj) == 65));
     }
 }
