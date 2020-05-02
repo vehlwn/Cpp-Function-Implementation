@@ -30,6 +30,7 @@ struct Add
     {
         return a + b;
     }
+    int data = 65;
 };
 
 int main()
