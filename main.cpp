@@ -66,7 +66,12 @@ int main()
     }
     {
         Add obj;
-        Function<int(Add&)> f = &Add::data;
+        // Invoke non functional data member.
+        Function<int&(Add&)> f = &Add::data;
+        assert((obj.data == 65));
         assert((f(obj) == 65));
+        f(obj) = 33;
+        assert((f(obj) == 33));
+        assert((obj.data == 33));
     }
 }
