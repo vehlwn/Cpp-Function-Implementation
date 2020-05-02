@@ -71,5 +71,15 @@ int main()
         Function<int(Add&, int, int)> f = &Add::mutableF;
         assert((f(obj, 3, 6) == 9));
     }
+    {
+        Add obj;
+        // Invoke non functional data member.
+        Function<int&(Add&)> f = &Add::data;
+        assert((obj.data == 65));
+        assert((f(obj) == 65));
+        f(obj) = 33;
+        assert((f(obj) == 33));
+        assert((obj.data == 33));
+    }
 }
 ```
